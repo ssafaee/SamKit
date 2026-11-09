@@ -1,0 +1,49 @@
+SAMKit (Spatial Analysis and Mapping Toolkit) - QGIS plugin
+Copyright (C) Samira Safaee, Ph.D.
+
+SAMKit is free software: you can redistribute it and/or modify it under the terms
+of the GNU General Public License as published by the Free Software Foundation,
+either version 2 of the License, or (at your option) any later version (see LICENSE).
+
+THIRD-PARTY CODE AND ALGORITHM PROVENANCE
+=========================================
+
+1. SAGA GIS (GPL-2.0-or-later) - code derived from SAGA
+   utils.py: compute_mrvbf_mrrtf() and its helpers (_saga_gradient_pct,
+   _saga_smoothed, _saga_percentiles, _bspline_R, _fill4x4, _saga_get_value)
+   are a Python translation of SAGA GIS
+     - saga-gis/src/tools/terrain_analysis/ta_morphometry/mrvbf.cpp
+       ("Multiresolution Index of Valley Bottom Flatness (MRVBF)",
+        Copyright (C) 2006 Olaf Conrad)
+     - saga-gis/src/saga_core/saga_api/grid.cpp, grid_operation.cpp,
+       grid_system.cpp (CSG_Grid::Get_Gradient, B-spline Get_Value incl. the
+       4x4 nodata fill, nearest-neighbour Assign, grid radius)
+   SAGA GIS: https://saga-gis.sourceforge.io  -  Conrad, O. et al. (2015)
+   Geosci. Model Dev. 8, 1991-2007. Algorithm: Gallant, J.C. & Dowling, T.I.
+   (2003) Water Resour. Res. 39(12), 1347.
+   utils.py: compute_curvature(convention="saga") evaluates the curvature
+   formulas of SAGA's CMorphometry::Set_From_Polynom / Set_Zevenbergen
+   (ta_morphometry/Morphometry.cpp).
+
+2. Conventions reproduced (no code copied)
+   - GDAL gdaldem (MIT licence) edge rules and Horn slope/aspect/TPI:
+     GDAL/OGR contributors, https://gdal.org (apps/gdaldem_lib.cpp)
+   - WhiteboxTools (MIT licence) D8 neighbour order/distances, specific
+     contributing area definition, TWI zero-slope handling, Slope x-resolution
+     convention, DiffFromMeanElev binning/summed-area window:
+     Lindsay, J.B. (2016) Computers & Geosciences 95, 75-84.
+   - gstat (GPL >= 2) sample-variogram defaults and fit.method 7 weights:
+     Pebesma (2004) Computers & Geosciences 30, 683-691.
+   - R randomForest / ranger default hyper-parameters:
+     Liaw & Wiener (2002) R News 2(3); Wright & Ziegler (2017) J. Stat. Softw. 77(1).
+
+3. Published algorithms implemented independently
+   Horn (1981); Zevenbergen & Thorne (1987); Moore et al. (1991); Florinsky
+   (2016); Weiss (2001); Beven & Kirkby (1979); O'Callaghan & Mark (1984);
+   Quinn et al. (1991); Freeman (1991); Barnes, Lehman & Mulla (2014)
+   Priority-Flood (Computers & Geosciences 62, 117-127); Lin (1989) CCC;
+   Nash & Sutcliffe (1970); Hengl et al. (2007) regression kriging.
+
+4. External programs/libraries called (not included in SAMKit)
+   GDAL (via QGIS Processing), SAGA GIS saga_cmd, WhiteboxTools whitebox_tools,
+   scikit-learn (BSD-3; embeds LIBSVM, Chang & Lin 2011), PyKrige (BSD-3), SciPy, NumPy.

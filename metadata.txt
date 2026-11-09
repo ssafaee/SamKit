@@ -1,0 +1,16 @@
+[general]
+name=SAMKit (Spatial Analysis and Mapping Toolkit)
+qgisMinimumVersion=3.16
+description=Download a DEM and project it to UTM (metres), compute environmental covariates (slope, curvature, TPI, TWI, MRVBF, MRRTF) from it, then run spatial predictive models (Random Forest, Support Vector Machine, Regression Kriging, Ordinary Kriging) using georeferenced point data and raster covariates, with full observed-vs-predicted validation tables.
+version=1.0.0
+author=Samira Safaee, Ph.D.
+email=samira7v@gmail.com
+about=SAMKit -- Spatial Analysis and Mapping Toolkit. Three-tab tool. Tab 1 "DEM (download / project)" gets elevation data for an area of interest drawn on the map canvas, taken from a layer's extent, or typed as a bounding box -- from AWS Terrain Tiles (no API key) or OpenTopography (SRTM, Copernicus GLO-30/90, NASADEM, ALOS AW3D30) -- or reprojects a DEM already loaded in QGIS, converting raw geographic degrees to a metre-based UTM grid with automatic zone detection (and optional feet-to-metres conversion of the elevation values themselves). Tab 2 "Environmental Covariates" takes a DEM raster and computes slope, curvature (profile/plan/general), TPI, TWI and MRVBF/MRRTF, writing GeoTIFF outputs. Tab 3 "Spatial Predictive Modeling" takes a point vector layer with a georeferenced attribute of interest plus a stack of raster covariates (e.g. the environmental covariates from Tab 2) and fits Random Forest, Support Vector Machine, Regression Kriging or Ordinary Kriging models to predict the attribute across the landscape as a raster. Every run writes an organized results folder containing the observed and predicted value of the attribute at every sample point with residuals, accuracy metrics overall and per fold, an observed-vs-predicted scatter plot, the extracted sample table, the exact calibration/validation split, and publication-quality maps of the prediction (and kriging variance) with full cartographic elements -- title, legend with units, coordinate grid, scale bar, north arrow, locator inset and CRS/metadata block -- exported as PNG, vector PDF and SVG. Includes a built-in dependency checker/installer for the optional Python packages (scikit-learn, pykrige). Reliable applications of this workflow, as documented in the peer-reviewed literature, include digital soil mapping (soil properties such as organic carbon, texture, pH and nutrients), soil erosion and gully erosion susceptibility mapping, landslide susceptibility mapping, groundwater potential mapping, flood/wetness and land degradation mapping, and precision agriculture management-zone delineation. See the README for details and references.
+tracker=https://github.com/ssafaee/SamKit/issues
+repository=https://github.com/ssafaee/SamKit
+category=Analysis
+icon=icon.png
+experimental=False
+deprecated=False
+hasProcessingProvider=no
+homepage=https://github.com/ssafaee/SamKit
